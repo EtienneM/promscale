@@ -31,6 +31,11 @@ func main() {
 		fmt.Println("Fatal error: cannot start logger: ", err)
 		os.Exit(1)
 	}
+
+	if os.Getenv("PORT") != "" {
+		cfg.ListenAddr = ":" + os.Getenv("PORT")
+	}
+
 	err = runner.Run(cfg)
 	if err != nil {
 		os.Exit(1)
